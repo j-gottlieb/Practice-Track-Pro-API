@@ -1,93 +1,13 @@
-Rails[![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
+## Summary
+The Practice Track Pro API is designed to store data associated with the [Practice
+Track Pro](https://j-gottlieb.github.io/Practice-Track-Pro-Client/) app. It has
+three tables which are all CRUD-able. Those tables can be viewed in the linked
+ERD diagram.
 
-# rails-api-template
+## Links
+[ERD](https://github.com/j-gottlieb/Practice-Track-Pro-Client/blob/master/public/images/ERD.jpg)
+[Repo](https://github.com/j-gottlieb/Practice-Track-Pro-API)
 
-A template for starting projects with `rails-api`. Includes authentication.
-
-At the beginning of each cohort, update the versions in [`Gemfile`](Gemfile).
-
-## Prerequisites
-
--   [rails-api-examples-walkthrough](https://git.generalassemb.ly/ga-wdi-boston/rails-api-examples-walkthrough)
-
-## Dependencies
-
-Install with `bundle install`.
-
--   [`rails-api`](https://github.com/rails-api/rails-api)
--   [`rails`](https://github.com/rails/rails)
--   [`active_model_serializers`](https://github.com/rails-api/active_model_serializers)
--   [`ruby`](https://www.ruby-lang.org/en/)
--   [`postgres`](http://www.postgresql.org)
-
-## Installation
-
-### Download Template:
-1.  [Download](../../archive/master.zip) this template.
-1.  Unzip and rename the template directory (`unzip ~/Downloads/rails-api-template-master.zip`)
-1.  Move into the new project and `git init`.
-
-### Customize Template:
-1.  Empty [`README.md`](README.md) and fill with your own content.
-1.  Rename your app module in `config/application.rb` (change
-    `RailsApiTemplate`).
-1.  Rename your project database in `config/database.yml` (change
-    `'rails-api-template'`).
-
-### Setup Environment:
-1.  Install dependencies with `bundle install`.
-1.  `git add` and `git commit` your changes.
-1.  Create a `.env` for sensitive settings (`touch .env`).
-1.  Generate new `development` and `test` secrets (`bundle exec rails secret`).
-1.  Store them in `.env` with keys `SECRET_KEY_BASE_<DEVELOPMENT|TEST>`
-    respectively.
-1.  In order to make requests to your deployed API, you will need to set
-    `SECRET_KEY_BASE` in the environment of the production API (for example, using `heroku config:set` or the Heroku dashboard).
-1.  In order to make requests from your deployed client application, you will
-    need to set `CLIENT_ORIGIN` in the environment of the production API (for example, `heroku config:set CLIENT_ORIGIN=https://<github-username>.github.io`).
-    See more about deploying to heroku [rails-heroku-setup-guide](https://git.generalassemb.ly/ga-wdi-boston/rails-heroku-setup-guide)
-
-### Setup your database:
-    - bin/rails db:drop (if it already exists)
-    - bin/rails db:create
-    - bin/rails db:migrate
-    - bin/rails db:seed
-    - bin/rails db:examples
-
-  Note: Remember to follow the same commands when setting up your deployed database!
-
-### Run your server!
-1. Run the API server with `bin/rails server` or `bundle exec rails server`.
-
-## Structure
-
-This template follows the standard project structure in Rails.
-
-`curl` command scripts are stored in [`curl-scripts`](curl-scripts) with names that
-correspond to API actions.
-
-User authentication is built-in.
-
-## Tasks
-
-Developers should run these often!
-
--   `bin/rails routes` lists the endpoints available in your API.
--   `bin/rspec spec` runs automated tests.
--   `bin/rails console` opens a REPL that pre-loads the API.
--   `bin/rails db` opens your database client and loads the correct database.
--   `bin/rails server` starts the API.
--   `curl-scripts/*.sh` run various `curl` commands to test the API. See below.
-
-## API
-
-Use this as the basis for your own API documentation. Add a new third-level
-heading for your custom entities, and follow the pattern provided for the
-built-in user authentication documentation.
-
-Scripts are included in [`curl-scripts`](curl-scripts) to test built-in actions. Add your
-own scripts to test your custom API. As an alternative, you can write automated
-tests in RSpec to test your API.
 
 ### Authentication
 
@@ -217,97 +137,68 @@ Response:
 HTTP/1.1 204 No Content
 ```
 
-### Users
+### Practices/Goals
+The practice and goal resources both follow standard CRUD actions. The practice
+resource is outlined below, with goal following the same pattern.
 
-| Verb | URI Pattern | Controller#Action |
-|------|-------------|-------------------|
-| GET  | `/users`    | `users#index`     |
-| GET  | `/users/1`  | `users#show`      |
-| PATCH| `/users/1`  | `users#update`    |
+| Verb   | URI Pattern            | Controller#Action |
+|--------|------------------------|-------------------|
+| POST   | `/practices`             | `users#create`  |
+| GET   | `/practices`             | `users#index`    |
+| GET   | `/practices/:id`         | `users#show`    |
+| PATCH  | `/practices/:id`     | `users#update`  |
+| DELETE | `/practices/:id`        | `users#destroy`   |
 
-#### GET /users
+#### POST /sign-up
 
 Request:
 
 ```sh
-curl http://localhost:4741/users \
+curl "http://localhost:4741/practices" \
   --include \
-  --request GET \
-  --header "Authorization: Token token=$TOKEN"
-```
-
-```sh
-TOKEN=BAhJIiVlZDIwZTMzMzQzODg5NTBmYjZlNjRlZDZlNzYxYzU2ZAY6BkVG--7e7f77f974edcf5e4887b56918f34cd9fe293b9f curl-scripts/users.sh
-```
-
-Response:
-
-```md
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=utf-8
-
-{
-  "users": [
-    {
-      "id": 2,
-      "email": "bob@ava.com"
-    },
-    {
-      "id": 1,
-      "email": "ava@bob.com"
-    }
-  ]
-}
-```
-
-#### GET /users/:id
-
-Request:
-
-```sh
-curl --include --request GET http://localhost:4741/users/$ID \
-  --header "Authorization: Token token=$TOKEN"
-```
-
-```sh
-ID=2 TOKEN=BAhJIiVlZDIwZTMzMzQzODg5NTBmYjZlNjRlZDZlNzYxYzU2ZAY6BkVG--7e7f77f974edcf5e4887b56918f34cd9fe293b9f curl-scripts/user.sh
-```
-
-Response:
-
-```md
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=utf-8
-
-{
-  "user": {
-    "id": 2,
-    "email": "bob@ava.com"
-  }
-}
-```
-
-#### PATCH /users/:id
-
-Request:
-
-```sh
-curl "http://localhost:4741/users/${ID}" \
-  --include \
-  --request PATCH \
-  --header "Authorization: Token token=${TOKEN}" \
+  --request POST \
   --header "Content-Type: application/json" \
+  --header "Authorization: Token token=${TOKEN}" \
   --data '{
-    "user": {
-      "email": "'"${EMAIL}"'"
+    "practice": {
+      "duration": "'"${DURATION}"'",
+      "date": "'"${DATE}"'"
     }
   }'
 ```
 
 ```sh
-ID=1 TOKEN="BAhJIiU1NGNlYjRmMjBhM2NkZTZiNzk1MGNiYmZiYWMyY2U4MwY6BkVG--ddb1e16af0e05921aa56d771e4a2f816f2a1d46e"
-EMAIL=mike@m
-sh curl-scripts/users/user-update.sh
+DATE='2018/10/23' DURATION=30 sh curl-scripts/practices/create-practice.sh
+```
+
+Response:
+
+```md
+HTTP/1.1 201 Created
+Content-Type: application/json; charset=utf-8
+
+{
+  "practice": {
+    "id": 1,
+    "Date": "2018/10/23",
+    "Duration": 30
+  }
+}
+```
+
+#### GET /practices
+
+Request:
+
+```sh
+curl "https://practice-track-pro.herokuapp.com/practices" \
+  --include \
+  --request GET \
+  --header "Authorization: Token token=${TOKEN}"
+```
+
+```sh
+TOKEN=BAhJIiVlZDIwZTMzMzQzODg5NTBmYjZlNjRlZDZlNzYxYzU2ZAY6BkVG--7e7f77f974edcf5e4887b56918f34cd9fe293b9f sh curl-scripts/practices/index-practice.sh
 ```
 
 Response:
@@ -316,34 +207,103 @@ Response:
 HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
 
-{"user":{"id":1,"email":"mike@m"}}
+[{},{},{}]
 ```
 
-### Reset Database without dropping
+#### GET /practices/:id
 
-This is not a task developers should run often, but it is sometimes necessary.
-
-**locally**
+Request:
 
 ```sh
-bin/rails db:migrate VERSION=0
-bin/rails db:migrate db:seed db:examples
+curl "https://practice-track-pro.herokuapp.com/practices/${ID}" \
+  --include \
+  --request GET \
+  --header "Authorization: Token token=${TOKEN}" \
+  '{
+    "practice": {
+      "id": "'${ID}'"
+    }
+  }'
 ```
-
-**heroku**
 
 ```sh
-heroku run rails db:migrate VERSION=0
-heroku run rails db:migrate db:seed db:examples
+TOKEN=BAhJIiVlZDIwZTMzMzQzODg5NTBmYjZlNjRlZDZlNzYxYzU2ZAY6BkVG--7e7f77f974edcf5e4887b56918f34cd9fe293b9f ID=1 sh curl-scripts/practices/index-practice.sh
 ```
 
-## Additional Resources
-- [rails-heroku-setup-guide](https://git.generalassemb.ly/ga-wdi-boston/rails-heroku-setup-guide)
-- http://guides.rubyonrails.org/api_app.html
-- https://blog.codeship.com/building-a-json-api-with-rails-5/
+Response:
 
-## [License](LICENSE)
+```md
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
 
-1.  All content is licensed under a CC­BY­NC­SA 4.0 license.
-1.  All software code is licensed under GNU GPLv3. For commercial use or
-    alternative licensing, please contact legal@ga.co.
+{
+  "practice": {
+    "id": 1,
+    "Date": "2018/10/23",
+    "Duration": 30
+  }
+}
+
+```
+
+####  PATCH /practices/:id
+
+Request:
+
+```sh
+curl "https://practice-track-pro.herokuapp.com/practices/${ID}" \
+  --include \
+  --request PATCH \
+  --header "Content-Type: application/json" \
+  --header "Authorization: Token token=${TOKEN}" \
+  --data '{
+    "practice": {
+      "duration": "'"${DURATION}"'",
+      "date": "'"${DATE}"'"
+    }
+  }'
+```
+
+```sh
+ID=1 DATE="2018/10/23" DURATION=30 TOKEN='BAhJIiVlZDIwZTMzMzQzODg5NTBmYjZlNjRlZDZlNzYxYzU2ZAY6BkVG--7e7f77f974edcf5e4887b56918f34cd9fe293b9f' sh curl-scripts/practices/update-practice.sh
+```
+
+Response:
+
+```md
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
+{
+  "practice": {
+    "id": 1,
+    "Date": "2018/10/23",
+    "Duration": 30
+  }
+}
+
+
+#### DELETE /practices/:id
+
+Request:
+
+```sh
+curl "http://practice-track-pro.herokuapp.com/${ID}" \
+  --include \
+  --request DELETE \
+  --header "Authorization: Token token=${TOKEN}" \
+  --data '{
+    "practice": {
+      "id": "'${ID}'"
+    }
+  }'
+```
+
+```sh
+ID=1 TOKEN='BAhJIiVlZDIwZTMzMzQzODg5NTBmYjZlNjRlZDZlNzYxYzU2ZAY6BkVG--7e7f77f974edcf5e4887b56918f34cd9fe293b9f' sh curl-scripts/practices/destroy-practice.sh
+```
+
+Response:
+
+```md
+HTTP/1.1 204 No Content
