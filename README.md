@@ -4,9 +4,13 @@ Track Pro](https://j-gottlieb.github.io/Practice-Track-Pro-Client/) app. It has
 three tables which are all CRUD-able. Those tables can be viewed in the linked
 ERD diagram.
 
+This API can be reached by any client, but is designed to communicate with the
+Practie Track Pro client. The client repo can be found [here.](https://github.com/j-gottlieb/Practice-Track-Pro-Client)
+
 ## Links
 [ERD](https://github.com/j-gottlieb/Practice-Track-Pro-Client/blob/master/public/images/ERD.jpg)
-[Repo](https://github.com/j-gottlieb/Practice-Track-Pro-API)
+[API Repo](https://github.com/j-gottlieb/Practice-Track-Pro-API)
+[Client Repo](https://github.com/j-gottlieb/Practice-Track-Pro-Client)
 
 
 ### Authentication
