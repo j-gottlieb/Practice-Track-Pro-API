@@ -142,7 +142,7 @@ HTTP/1.1 204 No Content
 ```
 
 ### Practices/Goals
-The practice and goal resources both follow standard CRUD actions. The practice
+The practice and goal resources both follow standard RESTful actions. The practice
 resource is outlined below, with goal following the same pattern.
 
 | Verb   | URI Pattern            | Controller#Action |
