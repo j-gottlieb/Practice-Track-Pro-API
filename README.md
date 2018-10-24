@@ -8,9 +8,9 @@ This API can be reached by any client, but is designed to communicate with the
 Practie Track Pro client. The client repo can be found [here.](https://github.com/j-gottlieb/Practice-Track-Pro-Client)
 
 ## Links
-[ERD](https://github.com/j-gottlieb/Practice-Track-Pro-Client/blob/master/public/images/ERD.jpg)
-[API Repo](https://github.com/j-gottlieb/Practice-Track-Pro-API)
-[Client Repo](https://github.com/j-gottlieb/Practice-Track-Pro-Client)
+*[ERD](https://github.com/j-gottlieb/Practice-Track-Pro-Client/blob/master/public/images/ERD.jpg)
+*[API Repo](https://github.com/j-gottlieb/Practice-Track-Pro-API)
+*[Client Repo](https://github.com/j-gottlieb/Practice-Track-Pro-Client)
 
 
 ### Authentication
