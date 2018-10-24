@@ -12,6 +12,10 @@ Practie Track Pro client. The client repo can be found [here.](https://github.co
 * [API Repo](https://github.com/j-gottlieb/Practice-Track-Pro-API)
 * [Client Repo](https://github.com/j-gottlieb/Practice-Track-Pro-Client)
 
+## Technologies Used
+* Ruby
+* Ruby on Rails
+* Heroku
 
 ### Authentication
 
