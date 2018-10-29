@@ -46,6 +46,6 @@ class PracticesController < ProtectedController
 
     # Only allow a trusted parameter "white list" through.
     def practice_params
-      params.require(:practice).permit(:duration, :date)
+      params.require(:practice).permit(:duration, :date, :practice_type)
     end
 end

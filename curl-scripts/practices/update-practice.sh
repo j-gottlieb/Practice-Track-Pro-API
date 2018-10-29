@@ -8,7 +8,8 @@ curl "http://localhost:4741/practices/${ID}" \
   --data '{
     "practice": {
       "duration": "'"${DURATION}"'",
-      "date": "'"${DATE}"'"
+      "date": "'"${DATE}"'",
+      "practice_type": "'"${TYPE}"'"
     }
   }'
 
